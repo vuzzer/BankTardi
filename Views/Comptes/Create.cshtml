@@ -1,0 +1,46 @@
+﻿@model BanqueTardi.Models.Compte
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Nouveau compte pour @ViewBag.ClientID</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+        @if (ViewBag.Message != null)
+        {
+            <div class="badge badge-danger">
+                <span>@ViewBag.Message</span>
+            </div>
+        }
+        <form asp-action="Create">
+            <input type="hidden" name="ClientID" value="@ViewBag.ClientID" />
+            <div class="form-group">
+                <label asp-for="TypeCompte" class="control-label"></label>
+                <select asp-for="TypeCompte" asp-items="ViewBag.TypeCompte" class="form-control">
+                    <option value="">-- Choisir type de compte --</option>
+                </select>
+                <span asp-validation-for="TypeCompte" class="text-danger"></span>
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Solde" class="control-label">Solde d'ouverture</label>
+                <input asp-for="Solde" class="form-control" />
+                <span asp-validation-for="Solde" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Enregistrer" class="btn btn-primary" />
+                <a asp-action="Index" asp-route-id="@ViewBag.ClientID">Gérer client</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

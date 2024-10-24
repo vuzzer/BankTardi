@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BanqueTardi.Models.Client>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Clients</h1>
+
+<p>
+    <a style="margin-right:10px" asp-action="Create">Nouveau client</a>
+    <a style="margin-right:10px" asp-controller="Interet" asp-action="Index">Calcul des intérêts</a>
+    <a asp-controller="AssuranceClients" asp-action="Index">Assurances</a>
+</p>
+<div style="text-align:right">
+    <form method="post" action="@Url.Action("Recherche", "Clients")">
+        <input type="text" name="champRecherche" placeholder="Nom ou prénom du client" />
+        <button type="submit" class="btn btn-primary">Recherche selon nom</button>
+    </form>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomClient)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrenomClient)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Adresse)
+            </th>
+         
+            
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientID)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomClient)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrenomClient)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Adresse)
+            </td>
+                <td>
+                    <a asp-controller="Comptes" asp-action="Index" asp-route-id="@item.ClientID">Gerer</a>
+
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

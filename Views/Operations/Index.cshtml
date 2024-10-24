@@ -1,0 +1,58 @@
+﻿@model IEnumerable<BanqueTardi.Models.Operation>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Les operations du compte @ViewBag.CompteId</h1>
+
+<p>
+    <a asp-action="Index" asp-controller="Comptes" asp-route-id="@ViewBag.ClientID" >Gérer client</a>
+</p>
+<div class="row mt-2 justify-content-end">
+    <form method="post" action="@Url.Action("Index", "Operations")" class="form-inline" >
+        <input type="hidden" value="@ViewBag.CompteId" name="CompteID" /> 
+        <div class="form-group mb-2">
+            <select name="TypeOperation" asp-items="ViewBag.TypeOperation" class="form-control">
+                <option value="">-- Choisir type d'operation --</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary m-2">Filtrer par type</button>
+    </form>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Libelle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Montant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTransaction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeOperation)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Libelle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Montant)
+            </td>
+            <td>
+                @item.DateTransaction
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeOperation)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

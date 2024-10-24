@@ -1,0 +1,70 @@
+﻿@model IEnumerable<BanqueTardi.DTO.AssuranceTardiDTO>
+<p>
+    <a asp-controller="AssuranceClients" asp-action="Create">Nouveau contrat</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomClient)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrenomClient)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Montant)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Prime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Statut)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomClient)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrenomClient)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Montant)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Statut)
+                </td>
+                @if (!item.Statut)
+                {
+                    <td>
+                        <a asp-controller="AssuranceClients" asp-action="Edit" asp-route-id="@item.ID">Modifier</a>
+                        <a asp-controller="AssuranceClients" asp-action="Delete" asp-route-id="@item.ID">Supprimer</a>
+                        <a asp-controller="AssuranceClients" asp-action="Confirmer" asp-route-id="@item.ID">Confirmer</a>
+
+                    </td>
+                }
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+

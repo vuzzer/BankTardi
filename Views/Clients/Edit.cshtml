@@ -1,0 +1,73 @@
+﻿@model BanqueTardi.Models.Client
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Client</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ClientID" />
+            <div class="form-group">
+                <label asp-for="NomClient" class="control-label"></label>
+                <input asp-for="NomClient" class="form-control" />
+                <span asp-validation-for="NomClient" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrenomClient" class="control-label"></label>
+                <input asp-for="PrenomClient" class="form-control" />
+                <span asp-validation-for="PrenomClient" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateNaissance" class="control-label"></label>
+                <input asp-for="DateNaissance" class="form-control" />
+                <span asp-validation-for="DateNaissance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Adresse" class="control-label"></label>
+                <input asp-for="Adresse" class="form-control" />
+                <span asp-validation-for="Adresse" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodePostal" class="control-label"></label>
+                <input asp-for="CodePostal" class="form-control" />
+                <span asp-validation-for="CodePostal" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="Telephone" class="control-label"></label>
+                <input asp-for="Telephone" class="form-control" />
+                <span asp-validation-for="Telephone" class="text-danger"></span>
+            </div>
+            @if (ViewBag.MineurMessage != null)
+            {
+                <div class="form-group">
+                    <label asp-for="NomParent" class="control-label"></label>
+                    <input asp-for="NomParent" class="form-control" />
+                    <span asp-validation-for="NomParent" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TelephoneParent" class="control-label"></label>
+                    <input asp-for="TelephoneParent" class="form-control" />
+                    <span asp-validation-for="TelephoneParent" class="text-danger"></span>
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Comptes" asp-route-id="@Model.ClientID">Retourner à la page précédente</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
