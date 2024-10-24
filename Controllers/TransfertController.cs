@@ -1,7 +1,6 @@
 using Dapr.Client;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Transfert.API;
 
 namespace BanqueTardi.Controllers
 {
@@ -13,8 +12,7 @@ namespace BanqueTardi.Controllers
             _httpClient = DaprClient.CreateInvokeHttpClient("transfert");
         }
 
-        [HttpGet("[action]")]
-        public async Task<ActionResult<object>> TransfertMoney(){  
+        public async Task<ActionResult<object>> SendMoney(){  
             var response = await _httpClient.GetFromJsonAsync<object>("TransfertMoney");
             return response;
         }
